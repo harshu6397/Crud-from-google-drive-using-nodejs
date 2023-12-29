@@ -29,12 +29,12 @@ async function uploadFileToGoogleDrive() {
     };
 
     // Step 5: Upload file to Google Drive
-    const res = drive.files.create({
+    const res = await drive.files.create({
       resource: fileMetadata,
       media: media,
       fields: "id",
     });
-
+    // console.log(res.data.id);
     return res.data.id;
   } catch (error) {
     console.log(error);
@@ -130,6 +130,9 @@ async function getFileFromGoogleDrive(fileId) {
     }
 }
 
-uploadFileToGoogleDrive()
-  .then((id) => console.log(id))
-  .catch((err) => console.log(err));
+// uploadFileToGoogleDrive()
+//   .then((id) => console.log(id))
+//   .catch((err) => console.log(err));
+getFileFromGoogleDrive("15FEQsbyQLW5zi5t3vhSHh005saPL-MfD").then((res) =>
+    console.log(res)
+    ).catch((err) => console.log(err));
